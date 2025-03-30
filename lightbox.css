@@ -1,79 +1,117 @@
+/* Modern Lightbox CSS */
+:root {
+  --lb-bg: rgba(0, 0, 0, 0.92);
+  --lb-border: #ffffff;
+  --lb-text: #ffffff;
+  --lb-secondary-text: #cccccc;
+  --lb-accent: #4361ee;
+  --lb-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body.lb-disable-scrolling {
   overflow: hidden;
+  touch-action: none;
 }
 
+/* Overlay with subtle animation */
 .lightboxOverlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 9999;
-  background-color: black;
-  opacity: 0.8;
+  background-color: var(--lb-bg);
   display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
 
+.lightboxOverlay.show {
+  opacity: 1;
+}
+
+/* Lightbox container with modern styling */
 .lightbox {
-  position: absolute;
-  left: 0;
-  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10000;
-  text-align: center;
-  line-height: 0;
-  font-weight: normal;
+  max-width: 90%;
+  max-height: 90%;
   outline: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: var(--lb-transition);
 }
 
+.lightbox.show {
+  opacity: 1;
+}
+
+/* Image styling with responsive behavior */
 .lightbox .lb-image {
   display: block;
+  max-height: 80vh;
+  max-width: 90vw;
+  width: auto;
   height: auto;
-  max-width: inherit;
-  max-height: none;
-  border-radius: 3px;
-
-  /* Image border */
-  border: 4px solid white;
+  border-radius: 12px;
+  border: 2px solid var(--lb-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95);
+  transition: var(--lb-transition);
+  cursor: grab;
 }
 
-.lightbox a img {
-  border: none;
+.lightbox .lb-image.active {
+  transform: scale(1);
 }
 
-.lb-outerContainer {
-  position: relative;
-  width: 250px;
-  height: 250px;
-  margin: 0 auto;
-  border-radius: 4px;
-
-  /* Background color behind image.
-     This is visible during transitions. */
-  background-color: white;
-}
-
-.lb-outerContainer:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.lb-loader {
-  position: absolute;
-  top: 43%;
-  left: 0;
-  height: 25%;
+/* Data container with better spacing */
+.lb-dataContainer {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 0 0 12px 12px;
+  padding: 1rem 1.5rem;
+  margin-top: -8px;
+  backdrop-filter: blur(8px);
   width: 100%;
-  text-align: center;
-  line-height: 0;
+  max-width: calc(90vw - 4px);
+  box-sizing: border-box;
 }
 
-.lb-cancel {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 0 auto;
-  background: url(../images/loading.gif) no-repeat;
+.lb-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 
+/* Caption and number styling */
+.lb-data .lb-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.lb-data .lb-caption {
+  font-size: 1.1rem;
+  color: var(--lb-text);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lb-data .lb-number {
+  color: var(--lb-secondary-text);
+  font-size: 0.9rem;
+}
+
+/* Navigation arrows with modern look */
 .lb-nav {
   position: absolute;
   top: 0;
@@ -83,113 +121,155 @@ body.lb-disable-scrolling {
   z-index: 10;
 }
 
-.lb-container > .nav {
-  left: 0;
-}
-
 .lb-nav a {
   outline: none;
-  background-image: url('data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--lb-transition);
+  position: absolute;
+  top: 0;
+  width: 50%;
 }
 
-.lb-prev, .lb-next {
-  height: 100%;
-  cursor: pointer;
-  display: block;
+.lb-nav a:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .lb-nav a.lb-prev {
-  width: 34%;
   left: 0;
-  float: left;
-  background: url(../images/prev.png) left 48% no-repeat;
-  opacity: 0;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
-}
-
-.lb-nav a.lb-prev:hover {
-  opacity: 1;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>') 16 16, w-res;
 }
 
 .lb-nav a.lb-next {
-  width: 64%;
   right: 0;
-  float: right;
-  background: url(../images/next.png) right 48% no-repeat;
-  opacity: 0;
-  -webkit-transition: opacity 0.6s;
-  -moz-transition: opacity 0.6s;
-  -o-transition: opacity 0.6s;
-  transition: opacity 0.6s;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>') 16 16, e-res;
 }
 
-.lb-nav a.lb-next:hover {
-  opacity: 1;
-}
-
-.lb-dataContainer {
-  margin: 0 auto;
-  padding-top: 5px;
-  width: 100%;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.lb-dataContainer:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.lb-data {
-  padding: 0 4px;
-  color: #ccc;
-}
-
-.lb-data .lb-details {
-  width: 85%;
-  float: left;
-  text-align: left;
-  line-height: 1.1em;
-}
-
-.lb-data .lb-caption {
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1em;
-}
-
-.lb-data .lb-caption a {
-  color: #4ae;
-}
-
-.lb-data .lb-number {
-  display: block;
-  clear: left;
-  padding-bottom: 1em;
-  font-size: 12px;
-  color: #999999;
-}
-
+/* Close button with better positioning */
 .lb-data .lb-close {
-  display: block;
-  float: right;
-  width: 30px;
-  height: 30px;
-  background: url(../images/close.png) top right no-repeat;
-  text-align: right;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: opacity 0.2s;
-  -moz-transition: opacity 0.2s;
-  -o-transition: opacity 0.2s;
-  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  color: var(--lb-text);
+  font-size: 1.75rem;
+  opacity: 0.8;
+  transition: var(--lb-transition);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .lb-data .lb-close:hover {
-  cursor: pointer;
   opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+/* Loading spinner */
+.lb-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+}
+
+.lb-cancel {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--lb-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Download button */
+.lb-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: var(--lb-accent);
+  color: white;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  text-decoration: none;
+  transition: var(--lb-transition);
+}
+
+.lb-download:hover {
+  background: #3a56d4;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lightbox .lb-image {
+    max-width: 95vw;
+    border-width: 2px;
+    border-radius: 8px;
+  }
+  
+  .lb-dataContainer {
+    padding: 0.75rem 1rem;
+    max-width: calc(95vw - 4px);
+  }
+  
+  .lb-data .lb-caption {
+    font-size: 1rem;
+  }
+  
+  .lb-nav a {
+    width: 40%;
+  }
+}
+
+@media (max-width: 480px) {
+  .lightbox .lb-image {
+    max-height: 70vh;
+  }
+  
+  .lb-data {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .lb-data .lb-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+  }
+  
+  .lb-download {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lb-border: #333333;
+    --lb-text: #f0f0f0;
+    --lb-secondary-text: #aaaaaa;
+  }
+  
+  .lb-dataContainer {
+    background: rgba(30, 30, 30, 0.85);
+  }
 }

@@ -1,64 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Gallery</title>
-    <link rel="stylesheet" href="image.css" />
-    <link rel="stylesheet" href="lightbox.css" />
-  </head>
-  <body>
+    <meta name="description" content="A beautiful collection of curated images">
+    <link rel="stylesheet" href="image.css">
+    <link rel="stylesheet" href="lightbox.css">
+    <!-- Preconnect to Google Fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Load a modern font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
     <div class="container">
-      <div class="gallery">
-        <a href="images/image 1.jpg" data-lightbox="anime" data-title="Ferry">
-          <img src="images/image 1.jpg" />
-        </a>
-        <a href="images/image 2.jpg" data-lightbox="anime" data-title="Rolex">
-          <img src="images/image 2.jpg" />
-        </a>
-        <a href="images/image 3.jpg" data-lightbox="anime" data-title="Restaurant">
-          <img src="images/image 3.jpg" />
-        </a>
-        <a href="images/image 4.jpg" data-lightbox="anime" data-title="Terminal">
-          <img src="images/image 4.jpg" />
-        </a>
-        <a href="images/image 5.jpg" data-lightbox="anime" data-title="Parisian House">
-          <img src="images/image 5.jpg" />
-        </a>
-        <a href="images/image 6.jpg" data-lightbox="anime" data-title="Glass House">
-          <img src="images/image 6.jpg" />
-        </a>
-        <a href="images/image 7.jpg" data-lightbox="anime" data-title="Snow">
-          <img src="images/image 7.jpg" />
-        </a>
-        <a href="images/image 8.jpg" data-lightbox="anime" data-title="Flowers">
-          <img src="images/image 8.jpg" />
-        </a>
-        <a href="images/image 9.jpg" data-lightbox="anime" data-title="White Flowers">
-          <img src="images/image 9.jpg" />
-        </a>
-        <a href="images/image 10.jpg" data-lightbox="anime" data-title="Pomegranate">
-          <img src="images/image 10.jpg" />
-        </a>
-        <a href="images/image 11.jpg" data-lightbox="anime" data-title="True Sparrows">
-          <img src="images/image 11.jpg" />
-        </a>
-        <a href="images/image 12.jpg" data-lightbox="anime" data-title="London Eye">
-          <img src="images/image 12.jpg" />
-        </a>
-        <a href="images/image 13.jpg" data-lightbox="anime" data-title="Misty Mountains">
-          <img src="images/image 13.jpg" />
-        </a>
-        <a href="images/image 14.jpg" data-lightbox="anime" data-title="Seiler">
-          <img src="images/image 14.jpg" />
-        </a>
-        <a href="images/image 15.jpg" data-lightbox="anime" data-title="Train">
-          <img src="images/image 15.jpg" />
-        </a>
-
-      </div>
+        <header class="gallery-header">
+            <h1>Image Gallery</h1>
+            <p class="gallery-description">A collection of beautiful moments</p>
+        </header>
+        
+        <div class="gallery">
+            <!-- Added alt attributes for accessibility and lazy loading -->
+            <a href="images/image 1.jpg" data-lightbox="gallery" data-title="Ferry">
+                <img src="images/image 1.jpg" alt="Ferry boat on water" loading="lazy">
+            </a>
+            <a href="images/image 2.jpg" data-lightbox="gallery" data-title="Rolex">
+                <img src="images/image 2.jpg" alt="Luxury Rolex watch" loading="lazy">
+            </a>
+            <a href="images/image 3.jpg" data-lightbox="gallery" data-title="Restaurant">
+                <img src="images/image 3.jpg" alt="Elegant restaurant interior" loading="lazy">
+            </a>
+            <a href="images/image 4.jpg" data-lightbox="gallery" data-title="Terminal">
+                <img src="images/image 4.jpg" alt="Modern transportation terminal" loading="lazy">
+            </a>
+            <a href="images/image 5.jpg" data-lightbox="gallery" data-title="Parisian House">
+                <img src="images/image 5.jpg" alt="Charming Parisian house" loading="lazy">
+            </a>
+            <a href="images/image 6.jpg" data-lightbox="gallery" data-title="Glass House">
+                <img src="images/image 6.jpg" alt="Modern glass house architecture" loading="lazy">
+            </a>
+            <a href="images/image 7.jpg" data-lightbox="gallery" data-title="Snow">
+                <img src="images/image 7.jpg" alt="Snowy winter landscape" loading="lazy">
+            </a>
+            <a href="images/image 8.jpg" data-lightbox="gallery" data-title="Flowers">
+                <img src="images/image 8.jpg" alt="Colorful flower arrangement" loading="lazy">
+            </a>
+            <a href="images/image 9.jpg" data-lightbox="gallery" data-title="White Flowers">
+                <img src="images/image 9.jpg" alt="Elegant white flowers" loading="lazy">
+            </a>
+            <a href="images/image 10.jpg" data-lightbox="gallery" data-title="Pomegranate">
+                <img src="images/image 10.jpg" alt="Fresh pomegranate fruit" loading="lazy">
+            </a>
+            <a href="images/image 11.jpg" data-lightbox="gallery" data-title="True Sparrows">
+                <img src="images/image 11.jpg" alt="Sparrows sitting on a branch" loading="lazy">
+            </a>
+            <a href="images/image 12.jpg" data-lightbox="gallery" data-title="London Eye">
+                <img src="images/image 12.jpg" alt="London Eye Ferris wheel" loading="lazy">
+            </a>
+            <a href="images/image 13.jpg" data-lightbox="gallery" data-title="Misty Mountains">
+                <img src="images/image 13.jpg" alt="Misty mountain landscape" loading="lazy">
+            </a>
+            <a href="images/image 14.jpg" data-lightbox="gallery" data-title="Seiler">
+                <img src="images/image 14.jpg" alt="Seiler product display" loading="lazy">
+            </a>
+            <a href="images/image 15.jpg" data-lightbox="gallery" data-title="Train">
+                <img src="images/image 15.jpg" alt="Train moving through landscape" loading="lazy">
+            </a>
+        </div>
     </div>
     
-    <script src="lightbox-plus-jquery.js" /></script>
-  </body>
+    <!-- Improved script loading -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="lightbox-plus-jquery.js"></script>
+    
+    <!-- Optional: Add a small loading animation -->
+    <div class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    
+    <script>
+        // Simple script to hide loading overlay when page loads
+        window.addEventListener('load', function() {
+            document.querySelector('.loading-overlay').style.display = 'none';
+        });
+    </script>
+</body>
 </html>
